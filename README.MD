@@ -85,7 +85,10 @@ serverless deploy
 ```
 git init
 git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/ais-one/apollo-server-gcp-sls.git
+git commit -m "first commit
+git remote add origin git@github.com:ais-one/apollo-server-gcp-sls.git
+# git remote add origin https://github.com/ais-one/apollo-server-gcp-sls.git
 git push -u origin master
 ```
+
+subscriptions-transport-ws graphql-subscriptions faker lodash
