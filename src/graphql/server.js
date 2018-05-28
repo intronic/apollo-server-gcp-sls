@@ -35,7 +35,7 @@ const setupGraphQLServer = () => {
   // /api/graphiql
   graphQLServer.use(
     "/graphiql",
-    graphiqlExpress({ endpointURL: "https://us-central1-www-mybot-live.cloudfunctions.net/myhook/graphql" }) // /api/graphql
+    graphiqlExpress({ endpointURL: "https://us-central1-xing-technologies.cloudfunctions.net/myhook/graphql" }) // /api/graphql
   )
 
   // /api/schema
