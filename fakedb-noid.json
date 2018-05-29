@@ -1,0 +1,351 @@
+{
+  "reagents": [
+    {
+      "date": "20180506",
+      "name": "Ultrapure water",
+      "vendor": "invitrogen",
+      "our_reagent": "",
+      "vendorBarcode": "109770151951134",
+      "barcode": "R.00001",
+      "lot": "109770151951134",
+      "expiryDate": "",
+      "notes": "DELIVERED AT ROOM TEMPERATURE"
+    },
+    {
+      "date": "20180304",
+      "name": "",
+      "vendor": "invitrogen",
+      "our_reagent": "",
+      "vendorBarcode": "911097701501951100",
+      "barcode": "R.00002",
+      "lot": "911097701501951100",
+      "expiryDate": "",
+      "notes": ""
+    },
+    {
+      "date": "20180914",
+      "name": "QUBIT SSDNA KIT",
+      "vendor": "INVITROGEN",
+      "our_reagent": "",
+      "vendorBarcode": "91q32850101938279",
+      "barcode": "R.00003",
+      "lot": "91q32850101938279",
+      "expiryDate": "",
+      "notes": ""
+    },
+    {
+      "date": "",
+      "name": "TE",
+      "vendor": "Xing Labs",
+      "our_reagent": "R00001,R00002,R00003",
+      "vendorBarcode": "",
+      "barcode": "R.00004",
+      "lot": "",
+      "expiryDate": "",
+      "notes": ""
+    }
+  ],
+  "vendors": [
+    {
+      "barcode": "ABC-1234",
+      "name": "BioTech Labs"
+    },
+    {
+      "barcode": "ABC-1252",
+      "name": "Eppendorf"
+    },
+    {
+      "barcode": "ABC-1741",
+      "name": "Illumina"
+    },
+    {
+      "barcode": "V-6768976",
+      "name": "Invitrogen"
+    },
+    {
+      "barcode": "V-001",
+      "name": "Xing Labs"
+    }
+  ],
+  "batches": [
+    {
+      "barcode": "Batch.00001",
+      "equipments": [
+        88,
+        99
+      ],
+      "reagents": [
+        11,
+        22,
+        33
+      ],
+      "protocols": [
+        1,
+        2
+      ],
+      "samples": [
+        333,
+        334
+      ]
+    },
+    {
+      "barcode": "B.09098",
+      "equipments": [
+        88,
+        99
+      ]
+    },
+    {
+      "barcode": "B.51412",
+      "equipments": [
+        88,
+        113
+      ],
+      "reagents": [
+        11,
+        22
+      ],
+      "protocols": [
+        1,
+        2,
+        3
+      ],
+      "samples": [
+        332,
+        333
+      ]
+    },
+    {
+      "barcode": "B-1234",
+      "equipments": [
+        88,
+        113
+      ]
+    },
+    {
+      "barcode": "B-0021",
+      "equipments": [
+        88,
+        113
+      ]
+    },
+    {
+      "barcode": "B-0921",
+      "equipments": [
+        88,
+        113
+      ]
+    },
+    {
+      "barcode": "B-1240011",
+      "reagents": [
+        11,
+        22
+      ]
+    },
+    {
+      "barcode": "B-15428824",
+      "protocols": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "barcode": "B-2401",
+      "protocols": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "barcode": "B-12100a",
+      "protocols": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "barcode": "B-78787",
+      "protocols": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "barcode": "B-78787",
+      "protocols": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "barcode": "B-12411775",
+      "equipments": [
+        88,
+        99
+      ],
+      "reagents": [
+        11,
+        22
+      ],
+      "protocols": [
+        1,
+        2,
+        3
+      ],
+      "samples": [
+        332,
+        333
+      ]
+    },
+    {
+      "barcode": "B-12411795",
+      "equipments": [
+        88,
+        99
+      ],
+      "reagents": [
+        11,
+        22
+      ],
+      "protocols": [
+        1,
+        2,
+        3
+      ],
+      "samples": [
+        332,
+        333
+      ]
+    },
+    {
+      "barcode": "B-123",
+      "equipments": [
+        88,
+        99
+      ],
+      "reagents": [
+        11,
+        22
+      ],
+      "protocols": [
+        1,
+        2,
+        3
+      ],
+      "samples": [
+        332,
+        333
+      ]
+    }
+  ],
+  "equipments": [
+    {
+      "date": "20180218",
+      "name": "Nextseq 550",
+      "vendor": "Illumina",
+      "serialNumber": "xdmelkj",
+      "location": "Post PCR Bench F",
+      "barcode": "Eq.00001",
+      "notes": "dropped on arrival"
+    },
+    {
+      "date": "20180303",
+      "name": "P20",
+      "vendor": "eppendorf",
+      "serialNumber": "X8783",
+      "location": "PRE PCR bench 2",
+      "barcode": "Eq.00002",
+      "notes": ""
+    },
+    {
+      "date": "20180303",
+      "name": "P200",
+      "vendor": "eppendorf",
+      "serialNumber": "M3453",
+      "location": "Pre PCR bench 3",
+      "barcode": "Eq.00003",
+      "notes": ""
+    },
+    {
+      "date": "20180303",
+      "name": "P200",
+      "vendor": "eppendorf",
+      "serialNumber": "M3555",
+      "location": "Pre PCR bench 3",
+      "barcode": "Eq.00004",
+      "notes": ""
+    }
+  ],
+  "protocols": [
+    {
+      "name": "Protocol Extract DNA",
+      "version": "v 0.0.1",
+      "barcode": "P.00015"
+    },
+    {
+      "name": "Protocol Extract DNA",
+      "version": "v 0.0.1",
+      "barcode": "P.04151"
+    },
+    {
+      "name": "Protocol Extract DNA",
+      "version": "v 0.0.1",
+      "barcode": "P.0aHKHT"
+    },
+    {
+      "name": "The Main Protocol",
+      "version": "v09.32",
+      "barcode": "P.00922"
+    },
+    {
+      "name": "The Main Protocol",
+      "version": "v09.32",
+      "barcode": "P.000214"
+    },
+    {
+      "name": "The Main Protocol",
+      "version": "v09.32",
+      "barcode": "P.00214a"
+    }
+  ],
+  "samples": [
+    {
+      "date": "20180501",
+      "name": "HG00403*1",
+      "project": "Coriell",
+      "pre_existing_barcode": "HG00403*1-13/02/2018-14:28:56",
+      "barcode": "00001",
+      "notes": "100ng/ul"
+    },
+    {
+      "date": "20180501",
+      "name": "HG00403*1",
+      "project": "Coriell",
+      "pre_existing_barcode": "hg00404*1",
+      "barcode": "00002",
+      "notes": "100ng/ul"
+    },
+    {
+      "date": "20180504",
+      "name": "CRL-2363D",
+      "project": "ATCC",
+      "pre_existing_barcode": "64097142",
+      "barcode": "00003",
+      "notes": "approx 50ng/ul; BREAST CARCINOMA"
+    },
+    {
+      "date": "20180504",
+      "name": "CRL-2343D",
+      "project": "ATCC",
+      "pre_existing_barcode": "70000771",
+      "barcode": "00004",
+      "notes": "approx 50ng/ul; LYMPOBLASTOID CONTROL FOR CRL-2363D"
+    }
+  ]
+}
