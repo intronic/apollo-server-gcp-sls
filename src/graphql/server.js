@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
-import schema from './data/schema'
+import schema from './data/schema2'
 import { printSchema } from 'graphql/utilities/schemaPrinter'
 
 // Subs - not possible in serverless...

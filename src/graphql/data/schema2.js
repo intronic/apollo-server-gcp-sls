@@ -1,90 +1,91 @@
 import { makeExecutableSchema } from 'graphql-tools';
 
-import Tags from './connectors';
-import { PubSub, withFilter } from 'graphql-subscriptions';
+import datastore from './datastore-resolvers';
+//   scalar Date
 
-const pubsub = new PubSub();
+const typeDefs = `
 
-const TAGS_CHANGED_TOPIC = 'tags_changed'
-
-const typeDefs = [`
-  type Tag {
-    id: Int
-    label: String
-    type: String
+  type VendorInput {
+    name: String!
   }
 
-  type TagsPage {
-    tags: [Tag]
-    hasMore: Boolean
+  type Vendor {
+    id: ID!
+    name: String!
+  }
+
+  type Reagent {
+    id: ID!
+    name: String!
+    vendor: Vendor!
+    date: String!
+    vendorBarcode: String
+    lot: String
+    expiryDate: String
+  }
+    
+  type Equipment {
+    id: ID!
+    name: String!
+    vendor: Vendor!
+    date: String!
+    serialNumber: String
+    location: String
   }
 
   type Query {
-    hello: String
-    ping(message: String!): String
-    tags(type: String!): [Tag]
-    tagsPage(page: Int!, size: Int!): TagsPage
-    randomTag: Tag
-    lastTag: Tag
+    getVendor(id: ID!): Vendor
+    getReagent(id: ID!): Reagent
+    getEquipment(id: ID!): Equipment
   }
 
   type Mutation {
-    addTag(type: String!, label: String!): Tag
-  }
-
-  type Subscription {
-    tagAdded(type: String!): Tag
+    upsertVendor(id: ID!, input: VendorInput): Vendor
   }
 
   schema {
     query: Query
     mutation: Mutation
-    subscription: Subscription
   }
-`];
+`;
+
+// listVendor(): [Vendor]!
+// listReagent(): [Reagent]!
+// listEquipment(): [Equipment]!
 
 const resolvers = {
   Query: {
-    hello(root, args, context) {
-      return "Hello world!";
+    getVendor(root, {id}, context) {
+      return datastore.getKind('Vendor', id, context)
     },
-    ping(root, { message }, context) {
-      return `Answering ${message}`;
+    getReagent(root, {id}, context) {
+      return datastore.getKind('Reagent', id, context)
     },
-    tags(root, { type }, context) {
-      return Tags.getTags(type);
-    },
-    tagsPage(root, { page, size }, context) {
-      return Tags.getTagsPage(page, size);
-    },
-    randomTag(root, args, context) {
-      return Tags.getRandomTag();
-    },
-    lastTag(root, args, context) {
-      return Tags.getLastTag();
-    },
-  },
-  Mutation: {
-    addTag: async (root, { type, label }, context) => {
-      console.log(`adding ${type} tag '${label}'`);
-      const newTag = await Tags.addTag(type, label);
-      pubsub.publish(TAGS_CHANGED_TOPIC, { tagAdded: newTag });
-      return newTag;
-    },
-  },
-  Subscription: {
-    tagAdded: {
-      subscribe: withFilter(
-        () => pubsub.asyncIterator(TAGS_CHANGED_TOPIC),
-        (payload, variables) => payload.tagAdded.type === variables.type,
-      ),
+    getEquipment(root, {id}, context) {
+      return datastore.getKind('Equipment', id, context)
     }
   },
+
+  // https://dev-blog.apollodata.com/react-graphql-tutorial-mutations-764d7ec23c15
+  
+  Mutation: {
+    upsertVendor: function ({id, input}, context) {
+      return datastore.upsertKind('Vendor', {id, input}, context)
+    },
+  }
+  // Mutation: {
+  //   // addTag: async (root, { type, label }, context) => {
+  //   //   console.log(`adding ${type} tag '${label}'`);
+  //   //   const newTag = await Tags.addTag(type, label);
+  //   //   pubsub.publish(TAGS_CHANGED_TOPIC, { tagAdded: newTag });
+  //   //   return newTag;
+  //   // },
+  // },
 };
 
 const jsSchema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 export default jsSchema;
