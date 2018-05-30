@@ -5,10 +5,15 @@ import datastore from './datastore-resolvers';
 
 const typeDefs = `
 
-  type VendorInput {
+  input VendorInput {
     name: String!
   }
 
+  enum SaveMethod {
+    insert
+    update
+    upsert
+  }
   type Vendor {
     id: ID!
     name: String!
@@ -34,45 +39,66 @@ const typeDefs = `
   }
 
   type Query {
-    getVendor(id: ID!): Vendor
-    getReagent(id: ID!): Reagent
-    getEquipment(id: ID!): Equipment
+    vendor(id: ID!): Vendor
+    reagent(id: ID!): Reagent
+    equipment(id: ID!): Equipment
+    vendorList: [Vendor]
+    reagentList: [Reagent]
+    equipmentList: [Equipment]
+  }
+
+  type Mutation {
+    vendorSave(id: ID!, input: VendorInput!, method: SaveMethod): Vendor
   }
 
   schema {
     query: Query
+    mutation: Mutation
   }
 `;
 
-// mutation: Mutation
-// type Mutation {
-//   upsertVendor(id: ID!, input: VendorInput): Vendor
-// }
-// listVendor(): [Vendor]!
 // listReagent(): [Reagent]!
 // listEquipment(): [Equipment]!
 
 const resolvers = {
   Query: {
-    getVendor(root, {id}, context) {
+    vendor(root, {id}, context) {
       return datastore.getKind('Vendor', id, context)
     },
-    getReagent(root, {id}, context) {
+    reagent(root, {id}, context) {
       return datastore.getKind('Reagent', id, context)
     },
-    getEquipment(root, {id}, context) {
+    equipment(root, {id}, context) {
       return datastore.getKind('Equipment', id, context)
-    }
+    },
+    vendorList(root, args, context) {
+      var res = datastore.listKind('Vendor', context)
+      console.log('>> vendorList', res)
+      return res
+    },
+    reagentList(root, args, context) {
+      var res = datastore.listKind('Reagent', context)
+      console.log('>> reagentList', res, 'root', root, 'args', args, 'ctx', context)
+      return res
+    },
+    equipmentList(root, args, context) {
+      var res = datastore.listKind('Equipment', context)
+      console.log('>> equipmentList', res)
+      return res
+    },
   },
 
   // https://dev-blog.apollodata.com/react-graphql-tutorial-mutations-764d7ec23c15
 
-  // Mutation: {
-  //   upsertVendor: function ({id, input}, context) {
-  //     return datastore.upsertKind('Vendor', {id, input}, context)
-  //   },
-  // }
-  
+  Mutation: {
+    vendorSave(root, {id, input, method}, context) {
+      console.log('>> vendor save root', root, 'id', id, 'input', input, 'method', method, 'ctx', context)
+      var res = datastore.saveKind('Vendor', {id, input, method}, context)
+      console.log('>> vendor save res', res)
+      return res
+    },
+  }
+
   // Mutation: {
   //   // addTag: async (root, { type, label }, context) => {
   //   //   console.log(`adding ${type} tag '${label}'`);
@@ -87,5 +113,7 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers
 });
+
+// addMockFunctionsToSchema({ schema });
 
 export default schema;
