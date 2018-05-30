@@ -11,5 +11,20 @@ import setupGraphQLServer from "./graphql/server"
 /* CF for Firebase with graphql-server-express */
 const graphQLServer = setupGraphQLServer()
 
-// https://us-central1-<project-name>.cloudfunctions.net/api
-export const myhook = https.onRequest(graphQLServer)
+let hook
+if (process.env.NODE_ENV === 'production') {
+  // Google Cloud Functions Server
+  // https://us-central1-<project-name>.cloudfunctions.net/api
+  hook = https.onRequest(graphQLServer)
+} else {
+  // localhost dev server
+  const PORT = 4000;
+  // const SUBSCRIPTIONS_PATH = '/subscriptions';
+  // const server = createServer(app)
+  graphQLServer.listen(PORT, () => {
+    console.log(`API Server is now running on http://localhost:${PORT}/graphql`)
+    // console.log(`API Subscriptions server is now running on ws://localhost:${PORT}${SUBSCRIPTIONS_PATH}`)
+  });
+}
+
+export const myhook = hook

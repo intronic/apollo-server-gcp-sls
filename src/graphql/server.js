@@ -3,8 +3,10 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
-import schema from './data/schema2'
+import schema from './data/schema'
 import { printSchema } from 'graphql/utilities/schemaPrinter'
+
+
 
 // Subs - not possible in serverless...
 // import { execute, subscribe } from 'graphql'
@@ -23,7 +25,7 @@ const setupGraphQLServer = () => {
     graphqlExpress({ schema, context: {} })
   )
 
-/* Handle Cors
+  /* Handle Cors
   graphQLServer.head('/graphql', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:9000');
     res.header('Access-Control-Request-Method', 'GET, POST');
@@ -31,11 +33,13 @@ const setupGraphQLServer = () => {
     res.end();
   });
 */
+  var endURL = { dev: "/graphql", production: "https://us-central1-xing-technologies.cloudfunctions.net/myhook/graphql" }
+  var endpoint = { endpointURL: endURL[ process.env.NODE_ENV ] }
 
   // /api/graphiql
   graphQLServer.use(
     "/graphiql",
-    graphiqlExpress({ endpointURL: "https://us-central1-xing-technologies.cloudfunctions.net/myhook/graphql" }) // /api/graphql
+    graphiqlExpress(endpoint) // /api/graphql
   )
 
   // /api/schema
@@ -46,15 +50,5 @@ const setupGraphQLServer = () => {
 
   return graphQLServer
 }
-
-/*
-const PORT = 3020;
-const SUBSCRIPTIONS_PATH = '/subscriptions';
-const server = createServer(app)
-server.listen(PORT, () => {
-  console.log(`API Server is now running on http://localhost:${PORT}/graphql`)
-  console.log(`API Subscriptions server is now running on ws://localhost:${PORT}${SUBSCRIPTIONS_PATH}`)
-});
-*/
 
 export default setupGraphQLServer
